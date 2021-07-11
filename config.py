@@ -1,1 +1,2 @@
 TOKEN = "1844902483:AAE_7p-Gcph58RK8iZlVbR7a84VaaJLoaGE"
+DB_NAME = "db1.sqlite"

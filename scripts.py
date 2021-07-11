@@ -1,5 +1,5 @@
 import sqlite3
-
+from config import DB_NAME
 
 def insert_users(user_id, username, first_name, last_name):
     """
@@ -10,25 +10,29 @@ def insert_users(user_id, username, first_name, last_name):
     :param last_name:
     :return: pass
     """
-    db = sqlite3.connect("db1.sqlite")
+    db = sqlite3.connect(DB_NAME)
     cursor = db.cursor()
-    cursor.execute("""
-    INSERT OR IGNORE INTO users  ('user_id','first_name','last_name','username','admin')
-    VALUES ( ?,?,?,?,? )
-    """, (user_id, first_name, last_name, username,0))
+    try:
+        cursor.execute("""
+        INSERT INTO users  ('user_id','first_name','last_name','username','admin')
+        VALUES ( ?,?,?,?,? )
+        """, (user_id, first_name, last_name, username, 0))
+    except sqlite3.IntegrityError:
+        pass
     db.commit()
     db.close()
-def is_admin(user_id):
-    db = sqlite3.connect("db1.sqlite")
-    cursor = db.cursor()
 
+
+def is_admin(user_id):
+    db = sqlite3.connect(DB_NAME)
+    cursor = db.cursor()
     cursor.execute("""
         SELECT * FROM users
         WHERE user_id = ?
     """, (user_id,))
-    if cursor.fetchall()[0][-1] == 1:
+    if cursor.fetchone()[-1] == 1:
+        db.close()
         return True
     else:
+        db.close()
         return False
-    db.commit()
-    db.close()

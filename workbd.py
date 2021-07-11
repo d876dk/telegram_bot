@@ -1,6 +1,7 @@
 import sqlite3
+from config import DB_NAME
 
-db = sqlite3.connect("db1.sqlite")
+db = sqlite3.connect(DB_NAME)
 cursor = db.cursor()
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS users(
@@ -32,17 +33,6 @@ cursor.execute("""
 # ]
 # name = "Denis"
 # email = "d876dk@gmail.com"
-
-
-cursor.execute("""
-INSERT OR IGNORE INTO users ('user_id','first_name','last_name','username','admin')
-VALUES ( ?,?,?,?,? )
-""", (2, "asdas", "adhdg", "fdffjhasd",1))
-
-cursor.execute("""
-INSERT OR IGNORE INTO product_categories ('product_name')
-VALUES ( ? )
-""", ("фрукты",))
 
 
 # cursor.execute("""
