@@ -19,5 +19,23 @@ def repeat_all_messages(message):  # Название функции не игр
         bot.send_message(message.chat.id, 'Привет, ты никто мне /start', reply_markup=main_keyboard)
 
 
+@bot.message_handler(content_types=["text"])
+def message_processing(message):
+    if message.text == "Добавить товар":
+        pass
+    elif message.text == 'Выбрать категорию':
+        pass
+    elif message.text == 'Выбрать товары':
+        pass
+    elif message.text == 'Корзина':
+        pass
+    elif message.text == "Добавить категорию":
+        pass
+    elif message.text == "Добавить товар":
+        pass
+    else:
+        bot.send_message(message.chat.id, 'Я не понял вашу команду')
+
+
 if __name__ == '__main__':
     bot.infinity_polling()

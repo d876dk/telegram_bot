@@ -1,9 +1,9 @@
 import telebot
 
-main_keyboard = telebot.types.ReplyKeyboardMarkup(True, True)
-main_keyboard.row('Привет', 'Пока', 'хех', 'отправь картинку')
+main_keyboard = telebot.types.ReplyKeyboardMarkup(True, False)
+main_keyboard.row('Выбрать категорию', 'Выбрать товары', 'Корзина')
 
-admin_keyboard = telebot.types.ReplyKeyboardMarkup(True,True)
-admin_keyboard.row('Привет', 'Пока', 'хех', 'отправь картинку')
+admin_keyboard = telebot.types.ReplyKeyboardMarkup(True,False)
+admin_keyboard.row('Выбрать категорию', 'Выбрать товары', 'Корзина')
 admin_keyboard.row("Добавить категорию", "Добавить товар")
 
