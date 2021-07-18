@@ -76,3 +76,17 @@ def get_category_id(cat_id):
     db.commit()
     db.close()
     return data
+
+def add_product_to_db(user_dict):
+    db = sqlite3.connect(DB_NAME)
+    cursor = db.cursor()
+    # cursor.execute("""
+    #     INSERT INTO product_categories (category_name,) VALUES (?,)
+    # """,(name_category))
+
+    cursor.execute('INSERT INTO products (product_name,product_description,product_price,'
+                   'categories_id,product_img) VALUES (?,?,?,?,?)',
+                   (user_dict["name"],user_dict["desc"],user_dict["price"],user_dict["category_id"],user_dict["image"]))
+
+    db.commit()
+    db.close()

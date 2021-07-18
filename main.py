@@ -1,6 +1,6 @@
 import config
 import telebot
-from scripts import insert_users,is_admin, get_category,get_category_id
+from scripts import insert_users,is_admin, get_category,get_category_id,add_product_to_db
 from keyboards import main_keyboard, admin_keyboard,agreement_keyboard
 from logics import add_category, add_product, get_category_keyboards
 
@@ -93,6 +93,10 @@ def calback_data_handler(call):
     if call.data == "back":
         bot.send_message(call.chat.id, "Выберите категорию товара из списка",
                          reply_markup=get_category_keyboards())
+    elif call.data == "agreement_yes":
+        add_product_to_db(users_data[call.from_user.id])
+    elif call.data == "agreement_no":
+        users_data[call.from_user.id]["status"] = "start"
     else:
         users_data[call.from_user.id]["category_id"] = call.data
         users_data[call.from_user.id]["status"] = "cp4"
