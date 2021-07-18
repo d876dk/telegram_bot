@@ -20,8 +20,9 @@ cursor.execute("""
     product_description TEXT,
     product_price INTEGER,
     categories_id INTEGER,
+    product_img BLOB,
      FOREIGN KEY(categories_id) REFERENCES product_categories(id)
-     
+    
 )
 """)
 cursor.execute("""

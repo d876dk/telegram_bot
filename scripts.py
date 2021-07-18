@@ -51,3 +51,28 @@ def add_category_to_db(name_category):
 
     db.commit()
     db.close()
+
+
+def get_category():
+    db = sqlite3.connect(DB_NAME)
+    cursor = db.cursor()
+
+    cursor.execute("""
+    SELECT * FROM product_categories 
+    """)
+    data = cursor.fetchall()
+    db.commit()
+    db.close()
+    return data
+
+def get_category_id(cat_id):
+    db = sqlite3.connect(DB_NAME)
+    cursor = db.cursor()
+    cursor.execute("""
+        SELECT category_name FROM product_categories 
+        WHERE id = ?
+        """,(cat_id,))
+    data = cursor.fetchone()
+    db.commit()
+    db.close()
+    return data
