@@ -13,17 +13,21 @@ CREATE TABLE IF NOT EXISTS users(
     admin BOOLEAN NOT NULL CHECK (admin IN (0, 1))
 ) 
 """)
-cursor.execute("""
+cursor.execute(""" 
     CREATE TABLE IF NOT EXISTS products(
     id INTEGER PRIMARY KEY,
+    product_name TEXT,
+    product_description TEXT,
+    product_price INTEGER,
     categories_id INTEGER,
      FOREIGN KEY(categories_id) REFERENCES product_categories(id)
+     
 )
 """)
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS product_categories(
     id INTEGER PRIMARY KEY,
-    product_name TEXT
+    category_name TEXT UNIQUE
 )
 """)
 

@@ -130,3 +130,4 @@ dmypy.json
 db.sqlite
 db1.sqlite
 db2.sqlite
+config.py
